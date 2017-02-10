@@ -44,7 +44,7 @@ Update the top of this readme to add:
 - how to seed the database
 - how to run the project
 
-### 1. Write a data import script
+## 1. Write a data import script
 
 Create an elasticsearch client using the [elasticsearch](https://www.npmjs.com/package/elasticsearch) npm package.
 
@@ -59,14 +59,14 @@ Read the data from `./data/pokedex.json` and import each document into the `poke
 Verify that the documents have been successfully added.
 (use curl)
 
-### 2. Design and Implement an API
+## 2. Design and Implement an API
 
 Based on the requirements in the following table, design your own API endpoints that would be used to access the corresponding queried dataset.
 
 All api routes should be mounted on the `/api/` route.
 example: `/api/pokedex ...`
 
-#### Get all
+### Get all
 
 **User params** : (none)
 
@@ -75,7 +75,7 @@ example: `/api/pokedex ...`
 **Example:**  Will return 800 results.
 
 
-#### Get by id
+### Get by id
 
 **User params** : **id**
 
@@ -84,7 +84,7 @@ example: `/api/pokedex ...`
 **Example:** Parameter **id** = `1` will return the bulbasaur document.
 
 
-#### Search name
+### Search name
 
 **User params** : **query**
 
@@ -93,7 +93,7 @@ example: `/api/pokedex ...`
 **Example** : **query** = `sy` will return 2 results: psyduck, and sylveon.
 
 
-#### Name starts with
+### Name starts with
 
 **User params** : **prefix**
 
@@ -103,7 +103,7 @@ example: `/api/pokedex ...`
 staravia.
 
 
-#### Types, or
+### Types, or
 
 **User params** : Types as a set of strings.
 
@@ -114,7 +114,7 @@ staravia.
 **Example** : **types** = `fire and ice` will return 105 results.
 
 
-#### Types, and
+### Types, and
 
 **User params** : Types as a set of strings.
 
@@ -127,7 +127,7 @@ staravia.
 **Example** : **types** = `water, grass and flying` will return 0 results.
 
 
-#### Stat equals value
+### Stat equals value
 
 **User params** : **stat** - **value**.
 
@@ -136,7 +136,7 @@ staravia.
 **Example** : **stat** = `HP` **value** = `160` will return 1 result: snorlax.
 
 
-#### Stat above value
+### Stat above value
 
 **User params** : **stat** - **value**.
 
@@ -145,7 +145,7 @@ staravia.
 **Example** : **stat** = `attack` **value** = `180` will return 5 results: mewtwomegamewtwox, heracrossmegaheracross, groudonprimalgroudon, deoxysattackforme, and rayquazamegarayquaza.
 
 
-#### Stat below value
+### Stat below value
 
 **User params** : **stat** - **value**.
 
@@ -154,7 +154,7 @@ staravia.
 **Example** : **stat** = `defense` **value** = `10` will return 2 results: chansey and happiny.
 
 
-#### Stat between low and high values
+### Stat between low and high values
 
 **User params** : **stat** - **low** - **high**.
 
