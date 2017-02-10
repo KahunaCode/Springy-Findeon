@@ -69,100 +69,104 @@ example: `/api/pokedex ...`
 #### Get all
 
 **User params** : (none)
-**Result** : all documents in the index
+
+**Result** : An array with all documents in the index.
+
+**Example:**  Will return 800 results.
+
 
 #### Get by id
 
 **User params** : **id**
-**Result** : an array of 0 or 1 document that has an id that matches the **id** parameter **id** = `1`
 
-will return the bulbasaur document
+**Result** : An array of 0 or 1 document that has an id that matches the **id**.
+
+**Example:** Parameter **id** = `1` will return the bulbasaur document.
+
 
 #### Search name
 
 **User params** : **query**
-**Result** : an array of documents where the name property matches **query**. **query** = `sy`
 
-will return the psyduck, and sylveon documents
+**Result** : An array of documents where the name property matches **query**.
+
+**Example** : **query** = `sy` will return 2 results: psyduck, and sylveon.
+
 
 #### Name starts with
 
 **User params** : **prefix**
-**Result** : an array of documents where the name property starts with **prefix**. **prefix** = `star`
 
-should return 5 results, staryu, staravia, starly and staraptor
+**Result** : An array of documents where the name property starts with **prefix**.
+
+**Example** : **prefix** = `star` will return 5 results: staryu, starmie, starly, staraptor, and
+staravia.
+
 
 #### Types, or
 
-**User params** : types as a set of strings
-**Result** : an array of documents where the types property includes any of the types passed in as a parameter.
+**User params** : Types as a set of strings.
 
-**types** = `fire`
+**Result** : An array of documents where the types property includes any of the types passed in as a parameter.
 
-should return 57 results
+**Example** : **types** = `fire` will return 64 results.
 
-**types** = `fire and ice`
+**Example** : **types** = `fire and ice` will return 105 results.
 
-should return 92 results
 
 #### Types, and
 
-**User params** : types as a set of strings
-**Result** : an array of documents where the types property includes all the types passed in as a parameter.
+**User params** : Types as a set of strings.
 
-**types** = `fire`
+**Result** : An array of documents where the types property includes all the types passed in as a parameter.
 
-should return 57 results
+**Example** : **types** = `fire` will return 64 results.
 
-**types** = `water and grass`
+**Example** : **types** = `water and grass` will return 3 results.
 
-should return 3 results
+**Example** : **types** = `water, grass and flying` will return 0 results.
 
-**types** = `water, grass and flying`
-
-should return 0 results
 
 #### Stat equals value
 
-**User params** : **stat** - **value**
-**Result** : an array of documents where the **stat** property matches **value**.
+**User params** : **stat** - **value**.
 
-**stat** = `HP` **value** = `160`
+**Result** : An array of documents where the **stat** property matches **value**.
 
-should return 1 result, the snorlax document
+**Example** : **stat** = `HP` **value** = `160` will return 1 result: snorlax.
+
 
 #### Stat above value
 
-**User params** : **stat** - **value**
-**Result** : an array of documents where the **stat** property is greater or equal than the **value** parameter.
+**User params** : **stat** - **value**.
 
-**stat** = `attack` **value** = `180`
+**Result** : An array of documents where the **stat** property is greater or equal than the **value** parameter.
 
-should return 2 results, mewtwomegamewtwox and rayquazamegarayquaza
+**Example** : **stat** = `attack` **value** = `180` will return 5 results: mewtwomegamewtwox, heracrossmegaheracross, groudonprimalgroudon, deoxysattackforme, and rayquazamegarayquaza.
+
 
 #### Stat below value
 
-**User params** : **stat** - **value**
-**Result** : an array of documents where the **stat** property is less than the **value** parameter.
+**User params** : **stat** - **value**.
 
-**stat** = `defense` **value** = `10`
+**Result** : An array of documents where the **stat** property is less than the **value** parameter.
 
-should return 2 results, mewtwomegamewtwox and rayquazamegarayquaza
+**Example** : **stat** = `defense` **value** = `10` will return 2 results: chansey and happiny.
+
 
 #### Stat between low and high values
 
-**User params** : **stat** - **low** - **high**
-**Result** : an array of documents where the **stat** property is greater than or equal to **low** and less than the **high** parameter.
+**User params** : **stat** - **low** - **high**.
 
-**stat** = `totalStats` **low** = `750` **high** = `800`
+**Result** : An array of documents where the **stat** property is greater than or equal to **low** and less than the **high** parameter.
 
-should return 3 results, mewtwomegamewtwox, rayquazamegarayquaza, and kyogreprimalkyogre
+**Example** : **stat** = `totalStats` **low** = `750` **high** = `800` will return 5 results: mewtwomegamewtwox, mewtwomegamewtwox, kyogreprimalkyogre, groudonprimalgroudon, and rayquazamegarayquaza.
 
 ---
 
 Once your endpoints have been approved by an instructor, implement each endpoint one at a time, while providing the requested subset of data.
 
-In express, create an es client, and query the es database to retrieve data for each endpoint.
+In express, create an es client module, and query the es database to retrieve data for each endpoint.
 
 
 ### Optional
