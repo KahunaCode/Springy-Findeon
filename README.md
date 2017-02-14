@@ -44,7 +44,7 @@ Update the top of this readme to add:
 - how to seed the database
 - how to run the project
 
-### 1. Write a data import script
+## 1. Write a data import script
 
 Create an elasticsearch client using the [elasticsearch](https://www.npmjs.com/package/elasticsearch) npm package.
 
@@ -59,110 +59,114 @@ Read the data from `./data/pokedex.json` and import each document into the `poke
 Verify that the documents have been successfully added.
 (use curl)
 
-### 2. Design and Implement an API
+## 2. Design and Implement an API
 
 Based on the requirements in the following table, design your own API endpoints that would be used to access the corresponding queried dataset.
 
 All api routes should be mounted on the `/api/` route.
 example: `/api/pokedex ...`
 
-#### Get all
+### Get all
 
 **User params** : (none)
-**Result** : all documents in the index
 
-#### Get by id
+**Result** : An array with all documents in the index.
+
+**Example:**  Will return 800 results.
+
+
+### Get by id
 
 **User params** : **id**
-**Result** : an array of 0 or 1 document that has an id that matches the **id** parameter **id** = `1`
 
-will return the bulbasaur document
+**Result** : An array of 0 or 1 document that has an id that matches the **id**.
 
-#### Search name
+**Example:** Parameter **id** = `1` will return the bulbasaur document.
+
+
+### Search name
 
 **User params** : **query**
-**Result** : an array of documents where the name property matches **query**. **query** = `sy`
 
-will return the psyduck, and sylveon documents
+**Result** : An array of documents where the name property matches **query**.
 
-#### Name starts with
+**Example** : **query** = `sy` will return 2 results: psyduck, and sylveon.
+
+
+### Name starts with
 
 **User params** : **prefix**
-**Result** : an array of documents where the name property starts with **prefix**. **prefix** = `star`
 
-should return 5 results, staryu, staravia, starly and staraptor
+**Result** : An array of documents where the name property starts with **prefix**.
 
-#### Types, or
+**Example** : **prefix** = `star` will return 5 results: staryu, starmie, starly, staraptor, and
+staravia.
 
-**User params** : types as a set of strings
-**Result** : an array of documents where the types property includes any of the types passed in as a parameter.
 
-**types** = `fire`
+### Types, or
 
-should return 57 results
+**User params** : Types as a set of strings.
 
-**types** = `fire and ice`
+**Result** : An array of documents where the types property includes any of the types passed in as a parameter.
 
-should return 92 results
+**Example** : **types** = `fire` will return 64 results.
 
-#### Types, and
+**Example** : **types** = `fire and ice` will return 105 results.
 
-**User params** : types as a set of strings
-**Result** : an array of documents where the types property includes all the types passed in as a parameter.
 
-**types** = `fire`
+### Types, and
 
-should return 57 results
+**User params** : Types as a set of strings.
 
-**types** = `water and grass`
+**Result** : An array of documents where the types property includes all the types passed in as a parameter.
 
-should return 3 results
+**Example** : **types** = `fire` will return 64 results.
 
-**types** = `water, grass and flying`
+**Example** : **types** = `water and grass` will return 3 results.
 
-should return 0 results
+**Example** : **types** = `water, grass and flying` will return 0 results.
 
-#### Stat equals value
 
-**User params** : **stat** - **value**
-**Result** : an array of documents where the **stat** property matches **value**.
+### Stat equals value
 
-**stat** = `HP` **value** = `160`
+**User params** : **stat** - **value**.
 
-should return 1 result, the snorlax document
+**Result** : An array of documents where the **stat** property matches **value**.
 
-#### Stat above value
+**Example** : **stat** = `HP` **value** = `160` will return 1 result: snorlax.
 
-**User params** : **stat** - **value**
-**Result** : an array of documents where the **stat** property is greater or equal than the **value** parameter.
 
-**stat** = `attack` **value** = `180`
+### Stat above value
 
-should return 2 results, mewtwomegamewtwox and rayquazamegarayquaza
+**User params** : **stat** - **value**.
 
-#### Stat below value
+**Result** : An array of documents where the **stat** property is greater or equal than the **value** parameter.
 
-**User params** : **stat** - **value**
-**Result** : an array of documents where the **stat** property is less than the **value** parameter.
+**Example** : **stat** = `attack` **value** = `180` will return 5 results: mewtwomegamewtwox, heracrossmegaheracross, groudonprimalgroudon, deoxysattackforme, and rayquazamegarayquaza.
 
-**stat** = `defense` **value** = `10`
 
-should return 2 results, mewtwomegamewtwox and rayquazamegarayquaza
+### Stat below value
 
-#### Stat between low and high values
+**User params** : **stat** - **value**.
 
-**User params** : **stat** - **low** - **high**
-**Result** : an array of documents where the **stat** property is greater than or equal to **low** and less than the **high** parameter.
+**Result** : An array of documents where the **stat** property is less than the **value** parameter.
 
-**stat** = `totalStats` **low** = `750` **high** = `800`
+**Example** : **stat** = `defense` **value** = `10` will return 2 results: chansey and happiny.
 
-should return 3 results, mewtwomegamewtwox, rayquazamegarayquaza, and kyogreprimalkyogre
+
+### Stat between low and high values
+
+**User params** : **stat** - **low** - **high**.
+
+**Result** : An array of documents where the **stat** property is greater than or equal to **low** and less than the **high** parameter.
+
+**Example** : **stat** = `totalStats` **low** = `750` **high** = `800` will return 5 results: mewtwomegamewtwox, mewtwomegamewtwox, kyogreprimalkyogre, groudonprimalgroudon, and rayquazamegarayquaza.
 
 ---
 
 Once your endpoints have been approved by an instructor, implement each endpoint one at a time, while providing the requested subset of data.
 
-In express, create an es client, and query the es database to retrieve data for each endpoint.
+In express, create an es client module, and query the es database to retrieve data for each endpoint.
 
 
 ### Optional
